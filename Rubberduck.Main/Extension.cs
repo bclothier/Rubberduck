@@ -24,6 +24,7 @@ using Rubberduck.VBEditor.ComManagement.TypeLibs;
 using Rubberduck.VBEditor.Events;
 using Rubberduck.VBEditor.SafeComWrappers.Abstract;
 using Rubberduck.VBEditor.VbeRuntime;
+using Rubberduck.UI.Context;
 
 namespace Rubberduck
 {
@@ -163,14 +164,7 @@ namespace Rubberduck
                 _initialSettings = configProvider.Read();
                 if (_initialSettings != null)
                 {
-                    try
-                    {
-                        var cultureInfo = CultureInfo.GetCultureInfo(_initialSettings.Language.Code);
-                        Dispatcher.CurrentDispatcher.Thread.CurrentUICulture = cultureInfo;
-                    }
-                    catch (CultureNotFoundException)
-                    {
-                    }
+                    ApplicationHandler.WpfStartup(CultureInfo.GetCultureInfo(_initialSettings.Language.Code), _initialSettings.Theme.Code);
 
                     try
                     {

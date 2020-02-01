@@ -12,8 +12,8 @@ using Rubberduck.VBEditor.VbeRuntime.Settings;
 using Rubberduck.Resources;
 using Rubberduck.Resources.Settings;
 using Rubberduck.Parsing.Common;
-using System.Collections.Specialized;
 using Rubberduck.UI.WPF;
+using Rubberduck.UI.Context;
 
 namespace Rubberduck.UI.Settings
 {
@@ -52,6 +52,10 @@ namespace Rubberduck.UI.Settings
                 .OrderBy(locale => locale.NativeName)
                 .Select(locale => new DisplayLanguageSetting(locale.Name)));
 
+            Themes = new ObservableCollection<DisplayThemeSetting>(ApplicationHandler.GetThemes()
+                .Select(theme => new DisplayThemeSetting(theme))
+                .OrderBy(theme => theme.Name));
+
             LogLevels = new ObservableCollection<MinimumLogLevel>(
                 LogLevelHelper.LogLevels.Select(l => new MinimumLogLevel(l.Ordinal, l.Name)));
             TransferSettingsToView(config.UserSettings.GeneralSettings, config.UserSettings.HotkeySettings);
@@ -67,6 +71,8 @@ namespace Rubberduck.UI.Settings
 
         public ObservableCollection<DisplayLanguageSetting> Languages { get; set; } 
 
+        public ObservableCollection<DisplayThemeSetting> Themes { get; set; }
+
         private DisplayLanguageSetting _selectedLanguage;
         public DisplayLanguageSetting SelectedLanguage
         {
@@ -76,6 +82,20 @@ namespace Rubberduck.UI.Settings
                 if (!Equals(_selectedLanguage, value))
                 {
                     _selectedLanguage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DisplayThemeSetting _selectedTheme;
+        public DisplayThemeSetting SelectedTheme
+        {
+            get => _selectedTheme;
+            set
+            {
+                if(!Equals(_selectedTheme,value))
+                {
+                    _selectedTheme = value;
                     OnPropertyChanged();
                 }
             }
@@ -301,6 +321,7 @@ namespace Rubberduck.UI.Settings
             return new Rubberduck.Settings.GeneralSettings
             {
                 Language = SelectedLanguage,
+                Theme = SelectedTheme,
                 CanShowSplash = ShowSplashAtStartup,
                 CanCheckVersion = CheckVersionAtStartup,
                 IncludePreRelease = IncludePreRelease,
@@ -323,7 +344,7 @@ namespace Rubberduck.UI.Settings
         private void TransferSettingsToView(IGeneralSettings general, IHotkeySettings hotkey)
         {
             SelectedLanguage = Languages.FirstOrDefault(culture => culture.Code == general.Language.Code);
-
+            SelectedTheme = Themes.FirstOrDefault(theme => theme.Code == general.Theme.Code);
             Hotkeys = hotkey == null
                 ? new ObservableViewModelCollection<HotkeySettingViewModel>()
                 : new ObservableViewModelCollection<HotkeySettingViewModel>(hotkey.Settings.Select(data => new HotkeySettingViewModel(data)));

@@ -11,6 +11,7 @@ namespace Rubberduck.Settings
     public interface IGeneralSettings 
     {
         DisplayLanguageSetting Language { get; set; }
+        DisplayThemeSetting Theme { get; set; }
         bool CanShowSplash { get; set; }
         bool CanCheckVersion { get; set; }
         bool IncludePreRelease { get; set; }
@@ -39,6 +40,16 @@ namespace Rubberduck.Settings
                 {
                     _language = value;
                 }
+            }
+        }
+
+        private DisplayThemeSetting _theme = new DisplayThemeSetting("lightblue");
+        public DisplayThemeSetting Theme
+        {
+            get => _theme;
+            set
+            {
+                _theme = value;
             }
         }
 
@@ -89,6 +100,7 @@ namespace Rubberduck.Settings
         {
             return other != null &&
                    Language.Equals(other.Language) &&
+                   Theme.Equals(other.Theme) &&
                    CanShowSplash == other.CanShowSplash &&
                    CanCheckVersion == other.CanCheckVersion &&
                    IncludePreRelease == other.IncludePreRelease &&

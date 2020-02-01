@@ -82,6 +82,7 @@ namespace Rubberduck.Settings
         public void Save(Configuration toSerialize)
         {
             var langChanged = _generalProvider.Read().Language.Code != toSerialize.UserSettings.GeneralSettings.Language.Code;
+            var themeChanged = _generalProvider.Read().Theme.Code != toSerialize.UserSettings.GeneralSettings.Theme.Code;
             var oldInspectionSettings = _inspectionProvider.Read().CodeInspections.Select(s => Tuple.Create(s.Name, s.Severity));
             var newInspectionSettings = toSerialize.UserSettings.CodeInspectionSettings.CodeInspections.Select(s => Tuple.Create(s.Name, s.Severity));
             var inspectionsChanged = !oldInspectionSettings.SequenceEqual(newInspectionSettings);
@@ -100,7 +101,7 @@ namespace Rubberduck.Settings
             _indenterProvider.Save(toSerialize.UserSettings.IndenterSettings);
             _windowProvider.Save(toSerialize.UserSettings.WindowSettings);
 
-            OnSettingsChanged(new ConfigurationChangedEventArgs(inspectOnReparse, langChanged, inspectionsChanged, autoCompletesChanged));
+            OnSettingsChanged(new ConfigurationChangedEventArgs(inspectOnReparse, langChanged, themeChanged, inspectionsChanged, autoCompletesChanged));
         }
 
         public event EventHandler<ConfigurationChangedEventArgs> SettingsChanged;

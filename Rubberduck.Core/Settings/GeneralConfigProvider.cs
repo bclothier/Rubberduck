@@ -47,6 +47,12 @@ namespace Rubberduck.Settings
             LanguageChanged?.Invoke(this, e);
         }
 
+        public event EventHandler ThemeChanged;
+        protected virtual void OnThemeChanged(EventArgs e)
+        {
+            ThemeChanged?.Invoke(this, e);
+        }
+
         public event EventHandler AutoSaveSettingsChanged;
         protected virtual void OnAutoSaveSettingsChanged(EventArgs e)
         {

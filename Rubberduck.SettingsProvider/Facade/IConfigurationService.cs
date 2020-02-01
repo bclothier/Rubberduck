@@ -17,15 +17,17 @@ namespace Rubberduck.SettingsProvider
     public class ConfigurationChangedEventArgs : EventArgs
     {
         public bool LanguageChanged { get; }
+        public bool ThemeChanged { get; }
         public bool InspectionSettingsChanged { get; }
         public bool RunInspectionsOnReparse { get; }
         public bool AutoCompleteSettingsChanged { get; }
 
-        public ConfigurationChangedEventArgs(bool runInspections, bool languageChanged, bool inspectionSettingsChanged, bool autoCompleteSettingsChanged)
+        public ConfigurationChangedEventArgs(bool runInspections, bool languageChanged, bool themeChanged, bool inspectionSettingsChanged, bool autoCompleteSettingsChanged)
         {
             AutoCompleteSettingsChanged = autoCompleteSettingsChanged;
             RunInspectionsOnReparse = runInspections;
             LanguageChanged = languageChanged;
+            ThemeChanged = themeChanged;
             InspectionSettingsChanged = inspectionSettingsChanged;
         }
     }

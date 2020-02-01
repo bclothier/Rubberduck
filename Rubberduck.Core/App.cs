@@ -12,12 +12,12 @@ using System.Globalization;
 using System.Linq;
 using Rubberduck.Parsing.UIContext;
 using Rubberduck.Resources;
-using Rubberduck.Runtime;
 using Rubberduck.UI.Command;
 using Rubberduck.VBEditor.Utility;
 using Rubberduck.VersionCheck;
 using Application = System.Windows.Forms.Application;
 using Rubberduck.SettingsProvider;
+using Rubberduck.UI.Context;
 
 namespace Rubberduck
 {
@@ -59,9 +59,19 @@ namespace Rubberduck
             _hooks.HookHotkeys();
             UpdateLoggingLevel();
 
+            if(e.LanguageChanged || e.ThemeChanged)
+            {
+                _config = _configService.Read();
+            }
+
             if (e.LanguageChanged)
             {
                 ApplyCultureConfig();
+            }
+
+            if(e.ThemeChanged)
+            {
+                ApplyThemeConfig();
             }
         }
 
@@ -126,9 +136,12 @@ namespace Rubberduck
 
         public void Startup()
         {
+            _config = _configService.Read();
+
             EnsureLogFolderPathExists();
             EnsureTempPathExists();
             ApplyCultureConfig();
+            ApplyThemeConfig();
 
             LogRubberduckStart();
             UpdateLoggingLevel();
@@ -161,8 +174,6 @@ namespace Rubberduck
 
         private void ApplyCultureConfig()
         {
-            _config = _configService.Read();
-
             var currentCulture = Resources.RubberduckUI.Culture;
             try
             {
@@ -179,6 +190,11 @@ namespace Rubberduck
                 _config.UserSettings.GeneralSettings.Language.Code = currentCulture.Name;
                 _configService.Save(_config);
             }
+        }
+
+        private void ApplyThemeConfig()
+        {
+            ApplicationHandler.ChangeTheme(_config.UserSettings.GeneralSettings.Theme.Code);
         }
 
         private static void LocalizeResources(CultureInfo culture)

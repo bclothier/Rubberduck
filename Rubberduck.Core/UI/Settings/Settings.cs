@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Threading;
 using Rubberduck.Settings;
 using Rubberduck.SettingsProvider;
+using Rubberduck.UI.Context;
 
 namespace Rubberduck.UI.Settings
 {
@@ -43,7 +43,7 @@ namespace Rubberduck.UI.Settings
         {
             if (_configService == null)
             {
-                _cultureInfo = Resources.RubberduckUI.Culture ?? Dispatcher.CurrentDispatcher.Thread.CurrentUICulture;
+                _cultureInfo = Resources.RubberduckUI.Culture ?? ApplicationHandler.GetLanguage();
                 return;
             }
 
@@ -51,8 +51,8 @@ namespace Rubberduck.UI.Settings
             {
                 var config = _configService.Read();
                 _cultureInfo = CultureInfo.GetCultureInfo(config.UserSettings.GeneralSettings.Language.Code);
-                
-                Dispatcher.CurrentDispatcher.Thread.CurrentUICulture = _cultureInfo;
+
+                ApplicationHandler.ChangeLanguage(_cultureInfo);
             }
             catch (CultureNotFoundException)
             {
