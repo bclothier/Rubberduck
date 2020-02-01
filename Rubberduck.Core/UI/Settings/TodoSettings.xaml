@@ -67,7 +67,7 @@
             </Label>
             <ToolBarTray IsLocked="True"
                          Background="Transparent">
-                <ToolBar Style="{DynamicResource ToolBarWithOverflowOnlyShowingWhenNeededStyle}"
+                <ToolBar Style="{StaticResource ToolBarWithOverflowOnlyShowingWhenNeededStyle}"
                          Background="Transparent">
                     <Button ToolTip="{Resx ResxName=Rubberduck.Resources.RubberduckUI, Key=Add}"
                             Click="AddNewTodoMarker"

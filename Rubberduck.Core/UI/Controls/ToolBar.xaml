@@ -13,7 +13,7 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <ContentPresenter Content="{Binding}"/>
             <Border Margin="6,0,0,0">
-                <Path VerticalAlignment="Center" Width="6" Fill="{DynamicResource ToolBarGripperBrush}" Stretch="Uniform" HorizontalAlignment="Right" 
+                <Path VerticalAlignment="Center" Width="6" Fill="{StaticResource ToolBarGripperBrush}" Stretch="Uniform" HorizontalAlignment="Right" 
                       Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z" />
             </Border>
         </StackPanel>
@@ -380,9 +380,9 @@
                                 </themes:SystemDropShadowChrome>
                             </Popup>
                         </Grid>
-                        <Border x:Name="MainPanelBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Style="{StaticResource ToolBarMainPanelBorderStyle}">
+                        <Border x:Name="MainPanelBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Style="{DynamicResource ToolBarMainPanelBorderStyle}">
                             <DockPanel KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local">
-                                <Thumb x:Name="ToolBarThumb" Margin="-3,-1,0,0" Padding="6,5,1,6" Style="{StaticResource ToolBarThumbStyle}" Width="10"/>
+                                <Thumb x:Name="ToolBarThumb" Margin="-3,-1,0,0" Padding="6,5,1,6" Style="{DynamicResource ToolBarThumbStyle}" Width="10"/>
                                 <ContentPresenter x:Name="ToolBarHeader" ContentSource="Header" HorizontalAlignment="Center" Margin="4,0,4,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                                 <ToolBarPanel x:Name="PART_ToolBarPanel" IsItemsHost="true" Margin="0,1,2,2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </DockPanel>
@@ -405,7 +405,7 @@
                         </Trigger>
                         <Trigger Property="Orientation" Value="Vertical">
                             <Setter Property="Margin" TargetName="Grid" Value="1,3,1,1"/>
-                            <Setter Property="Style" TargetName="OverflowButton" Value="{StaticResource ToolBarVerticalOverflowButtonStyle}"/>
+                            <Setter Property="Style" TargetName="OverflowButton" Value="{DynamicResource ToolBarVerticalOverflowButtonStyle}"/>
                             <Setter Property="Height" TargetName="ToolBarThumb" Value="10"/>
                             <Setter Property="Width" TargetName="ToolBarThumb" Value="Auto"/>
                             <Setter Property="Margin" TargetName="ToolBarThumb" Value="-1,-3,0,0"/>

@@ -21,7 +21,7 @@
             <converters:DelimiterToTextConverter x:Key="DelimiterToText" />
             <converters:HotkeyDisplayConverter x:Key="HotkeyDisplay" />
             <hiddenVisibility:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibility" />
-            
+
             <ObjectDataProvider x:Key="Delimiters"
                             MethodName="GetValues"
                             ObjectType="{x:Type core:Enum}">
@@ -80,6 +80,14 @@
                               ItemsSource="{Binding Languages, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Name" />
 
+                    <Label Content="{Resx ResxName=Rubberduck.Resources.RubberduckUI, Key=GeneralSettings_LanguageLabel}" FontWeight="SemiBold" />
+                    <ComboBox Width="210"
+                              HorizontalAlignment="Left"
+                              Margin="5"
+                              SelectedItem="{Binding SelectedTheme, Mode=TwoWay}"
+                              ItemsSource="{Binding Themes, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="Name" />
+                    
                     <CheckBox Margin="5,0,0,5" Content="{Resx ResxName=Rubberduck.Resources.RubberduckUI, Key=GeneralSettings_ShowSplash}"
                               IsChecked="{Binding ShowSplashAtStartup}" />
 
