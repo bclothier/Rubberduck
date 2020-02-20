@@ -26,7 +26,7 @@ namespace Rubberduck.UI.Context
     /// https://stackoverflow.com/questions/52894181/wpf-cannot-close-application-instance-for-running-it-a-second-time
     /// 
     /// In light of this restriction and the fact that we don't want to futz with AppDomains, the best thing to do is to
-    /// create the <see cref="Application"/> object if it doesn't exist and simply never call the <see cref="Application.Shutdown"/>
+    /// create the <see cref="Application"/> object if it doesn't exist and simply never call the <see cref="Application.Shutdown()"/>
     /// method. This will work even when we unload &amp; reload the Rubberduck add-in as the object will remain alive and we can still
     /// customize it as we need.
     /// </remarks>

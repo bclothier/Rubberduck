@@ -5,7 +5,7 @@
                     xmlns:settingsConverters="clr-namespace:Rubberduck.UI.Settings.Converters"
                     xmlns:designTimeDictionary="clr-namespace:Rubberduck.UI.Context">
     <ResourceDictionary.MergedDictionaries>
-        <designTimeDictionary:DesignTimeResourceDictionary DesignTimeSource="pack://application:,,,/Rubberduck.Core;component/UI/Styles/LightBlueTheme.xaml"/>
+        <designTimeDictionary:DesignTimeResourceDictionary DesignTimeSource="pack://application:,,,/Rubberduck.Core;component/UI/Styles/WindowTheme.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ToolbarIconStyle" TargetType="Image">

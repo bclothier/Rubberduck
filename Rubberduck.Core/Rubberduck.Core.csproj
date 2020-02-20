@@ -28,6 +28,12 @@
     <NoWarn>1701;1702;;1591;4011;1001;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Page Remove="UI\Styles\DefaultStyle.xaml" />
+    <Page Remove="UI\Styles\HotDogStandTheme.xaml" />
+    <Page Remove="UI\Styles\LightBlueTheme.xaml" />
+    <Page Remove="UI\Styles\WindowTheme.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\libs\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
@@ -90,6 +96,12 @@
     <PackageReference Include="System.Windows.Interactivity.WPF">
       <Version>2.0.20525</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Styles\DefaultStyle.xaml" />
+    <Resource Include="UI\Styles\HotDogStandTheme.xaml" />
+    <Resource Include="UI\Styles\LightBlueTheme.xaml" />
+    <Resource Include="UI\Styles\WindowTheme.xaml" />
   </ItemGroup>
 
   <!-- BEGIN WINDOWS FORMS WORKAROUND SECTION -->
