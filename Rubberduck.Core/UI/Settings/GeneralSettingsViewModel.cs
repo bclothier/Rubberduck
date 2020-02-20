@@ -132,7 +132,7 @@ namespace Rubberduck.UI.Settings
         {
             get
             {
-                return _hotkeys.Any(s => !s.IsValid);
+                return _hotkeys.Any(s => !s.IsValid && s.IsEnabled);
             }
         }
 
