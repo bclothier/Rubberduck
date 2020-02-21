@@ -88,7 +88,7 @@ namespace Rubberduck.UI.Converters
             double r = (double)rgbColor.R / 255;
             var g = (double)rgbColor.G / 255;
             var b = (double)rgbColor.B / 255;
-            var a = (double)rgbColor.A / 255;
+            hlsColor.A = (double)rgbColor.A / 255;
 
             // Find min and max RGB values
             var min = Math.Min(r, Math.Min(g, b));
@@ -129,9 +129,6 @@ namespace Rubberduck.UI.Converters
             if (b == max) hlsColor.H = 4.0 + (r - g) / delta;
             hlsColor.H *= 60;
             if (hlsColor.H < 0) hlsColor.H += 360;
-
-            // Set A
-            hlsColor.A = a;
 
             // Set return value
             return hlsColor;

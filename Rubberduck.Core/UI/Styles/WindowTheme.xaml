@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--<converters:RgbShadeConverter x:Key="RgbShadeConverter"/>-->
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Rubberduck.UI.Converters;assembly=Rubberduck.Core">
+    <converters:RgbShadeConverter x:Key="RgbShadeConverter"/>
 
     <Color x:Key="HighlightGradientStartColor">#FFFFFFFF</Color>
     <Color x:Key="HighlightGradientEndColor">#FF9BDDFB</Color>
@@ -56,10 +57,11 @@
     <SolidColorBrush x:Key="HighlightGradientEndBrush" Color="{StaticResource HighlightGradientEndColor}"/>
     <SolidColorBrush x:Key="ControlGradientStartBrush" Color="{StaticResource ControlGradientStartColor}"/>
     <SolidColorBrush x:Key="ControlGradientEndBrush" Color="{StaticResource ControlGradientEndColor}"/>
-    <SolidColorBrush x:Key="ButtonFaceBrush" Color="{StaticResource ButtonFaceColor}"/>
-    <!--<SolidColorBrush x:Key="ButtonFaceBrush" Color="{Binding Source={StaticResource ButtonFaceColor}, Converter={StaticResource RgbShadeConverter}, ConverterParameter=-0.7}"/>-->
+    <!--<SolidColorBrush x:Key="ButtonFaceBrush" Color="{StaticResource ButtonFaceColor}"/>-->
+    <SolidColorBrush x:Key="ButtonFaceBrush" Color="{Binding Source={x:Static SystemColors.ControlBrush}, Converter={StaticResource RgbShadeConverter}, ConverterParameter=-0.7}"/>
     <SolidColorBrush x:Key="BorderWireBrush" Color="{StaticResource BorderWireColor}"/>
-    <SolidColorBrush x:Key="GlyphPanelBrush" Color="{StaticResource GlyphPanelColor}"/>
+    <!--<SolidColorBrush x:Key="GlyphPanelBrush" Color="{StaticResource GlyphPanelColor}"/>-->
+    <SolidColorBrush x:Key="GlyphPanelBrush" Color="{Binding Source={x:Static SystemColors.AppWorkspaceBrush}, Converter={StaticResource RgbShadeConverter}, ConverterParameter=-0.7}"/>
     <SolidColorBrush x:Key="GlyphPanelTemplateBrush" Color="{StaticResource GlyphPanelTemplateColor}"/>
     <SolidColorBrush x:Key="GlyphPanelBorderBrush" Color="{StaticResource GlyphPanelBorderColor}"/>
     <SolidColorBrush x:Key="GreenButtonBrush" Color="{StaticResource GreenButtonColor}"/>
