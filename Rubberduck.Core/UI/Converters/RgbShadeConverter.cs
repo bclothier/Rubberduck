@@ -47,11 +47,26 @@ namespace Rubberduck.UI.Converters
             }
             
             var hlsColor = RgbToHls(rgbColorIn);
-            hlsColor.L *= (brightnessAdjustment + 1);
+            
+            if (brightnessAdjustment > 0)
+            {
+                // Brighten the color by a % between the value of L to 1 (the maximum)
+                var lbound = hlsColor.L;
+                const double ubound = 1;
+
+                hlsColor.L = ((ubound - lbound) * brightnessAdjustment) + lbound;
+            }
+            else if (brightnessAdjustment < 0)
+            {
+                // Darken the color by a % between 0 (the minimum) to the value of L
+                // Because the lower bound is 0, the formula is simplified.
+                // Also, -0.1 becomes 10% darker, -0.9 becomes 90% darker.
+                hlsColor.L -= hlsColor.L * Math.Abs(brightnessAdjustment);
+            }
 
             // Return result
             var rgbColorOut = HlsToRgb(hlsColor);
-
+            
             if (returnBrush)
             {
                 var brushOut = new SolidColorBrush
@@ -109,7 +124,7 @@ namespace Rubberduck.UI.Converters
             }
 
             /* If we get to this point, we know we don't have a shade of gray. */
-
+            
             // Set L
             hlsColor.L = (min + max) / 2;
 
